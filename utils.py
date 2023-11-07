@@ -2,7 +2,7 @@ import logging, os, re, asyncio, requests, aiohttp
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid                             
 from pyrogram.types import Message, InlineKeyboardButton
 from pyrogram import filters, enums
-from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, SHORT_URL, SHORT_API
+from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, CUSTOM_FILE_CAPTION, MAX_LIST_ELM, SHORT_URL, SHORT_API
 from imdb import Cinemagoer
 from typing import Union, List
 from datetime import datetime, timedelta
@@ -358,6 +358,28 @@ async def admin_check(message: Message) -> bool:
 
 async def admin_filter(filt, client, message):
     return await admin_check(message)
+ 
+async def send_all(bot, userid, files, ident):
+    for file in files:
+        f_caption = file.caption
+        title = file.file_name
+        size = get_size(file.file_size)
+        if CUSTOM_FILE_CAPTION:
+            try:
+                f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
+                                                        file_size='' if size is None else size,
+                                                        file_caption='' if f_caption is None else f_caption)
+            except Exception as e:
+                print(e)
+                f_caption = f_caption
+        if f_caption is None:
+            f_caption = f"{title}"
+        await bot.send_cached_media(
+            chat_id=userid,
+            file_id=file.file_id,
+            caption=f_caption,
+            protect_content=True if ident == "filep" else False,
+            reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('⚔️ 𝖯𝖨𝖱𝖮 𝖴𝖯𝖣𝖠𝖳𝖤𝖲 ⚔️', url="https://t.me/piroxbots") ] ] ))
 
 
 
