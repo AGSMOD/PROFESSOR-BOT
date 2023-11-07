@@ -226,13 +226,12 @@ Wᴇʟᴄᴏᴍᴇ ᴛᴏ {chat}.
 🤍 </b>Join</b> [𝗠𝗢𝗩𝗜𝗘𝗦 𝗛𝗨𝗕](https://t.me/Movies_Hub_Og)  
 """
 
-    IMDB_TEMPLATE_TXT = """
-🏷 𝖳𝗂𝗍𝗅𝖾: <a href={url}>{title}</a> 
-🎈 𝖸𝖾𝖺𝗋: {year} \n⭐️ 𝖱𝖺𝗍𝗂𝗇𝗀𝗌: {rating}/ 10  
-🎭 𝖦𝖾𝗇𝖾𝗋𝗌: {genres} 
+    IMDB_TEMPLATE = """<b>Qᴜᴇʀʏ: {query}</b>
 
-🎇 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖡𝗒 [[𝗠𝗢𝗩𝗜𝗘𝗦 𝗛𝗨𝗕]](t.me/Movies_Hub_Og)"""
-   
+🏷 Tɪᴛʟᴇ: <a href={url}>{title}</a>
+🎭 Gᴇɴʀᴇꜱ: {genres}
+📆 Yᴇᴀʀ: <a href={url}/releaseinfo>{year}</a>
+🌟 Rᴀᴛɪɴɢ: <a href={url}/ratings>{rating}</a>/10"""
   
  
 
