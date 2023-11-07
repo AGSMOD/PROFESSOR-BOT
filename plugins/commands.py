@@ -121,11 +121,12 @@ async def start(client, message):
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
-                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍𝗠𝗢𝗩𝗘𝗦 𝗛𝗨𝗕 𝗢𝗚🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
+                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
+                    )
             except FloodWait as e:
                 await asyncio.sleep(e.value)
                 await client.send_cached_media(chat_id=message.from_user.id, file_id=msg.get("file_id"), caption=f_caption, protect_content=msg.get('protect', False)
-  reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(('🤍𝗠𝗢𝗩𝗘𝗦 𝗛𝗨𝗕 𝗢𝗚🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
+  reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(('🤍MOVIES HUB_OG🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
             )
             except Exception as e:
                 logger.warning(e, exc_info=True)
@@ -184,7 +185,7 @@ async def start(client, message):
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
             msg = await client.send_cached_media(chat_id=message.from_user.id, file_id=file_id, protect_content=True if pre == 'filep' else False,
-            reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍𝗠𝗢𝗩𝗘𝗦 𝗛𝗨𝗕 𝗢𝗚🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
+            reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
             )
             filetype = msg.media
             file = getattr(msg, filetype)
@@ -214,8 +215,8 @@ async def start(client, message):
                 file_id=file.file_id,
                 caption=f_caption,
                 protect_content=True if pre == 'filep' else False,
-                reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍𝗠𝗢𝗩𝗘𝗦 𝗛𝗨𝗕 𝗢𝗚🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
-            
+                reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
+            )
                     
 
 
