@@ -121,12 +121,12 @@ async def start(client, message):
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
-                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
+                    reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url="https://t.me/Movies_Hub_Og") ] ] ),
                     )
             except FloodWait as e:
                 await asyncio.sleep(e.value)
                 await client.send_cached_media(chat_id=message.from_user.id, file_id=msg.get("file_id"), caption=f_caption, protect_content=msg.get('protect', False)
-  reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton(('🤍MOVIES HUB_OG🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
+  reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url="https://t.me/Movies_Hub_Og")] ] ),
             )
             except Exception as e:
                 logger.warning(e, exc_info=True)
@@ -184,42 +184,41 @@ async def start(client, message):
     if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
-            msg = await client.send_cached_media(chat_id=message.from_user.id, file_id=file_id, protect_content=True if pre == 'filep' else False,
-            reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
-            )
+            msg = await client.send_cached_media(chat_id=message.from_user.id, file_id=file_id, protect_content=True if pre == 'filep' else False)
             filetype = msg.media
             file = getattr(msg, filetype)
             title = file.file_name
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             if CUSTOM_FILE_CAPTION:
-                try: f_caption=CUSTOM_FILE_CAPTION.format(mention=message.from_user.mention, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
-                except: return
-            return await msg.edit_caption(f_caption)
-        except: pass
-        return await message.reply('NO SUCH FILE EXIST...')
-        
+                try:
+                    f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
+                except:
+                    return
+            await msg.edit_caption(f_caption)
+            return
+        except:
+            pass
+        return await message.reply('<b><i>No such file exist.</b></i>')
     files = files_[0]
     title = files.file_name
     size=get_size(files.file_size)
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
         try:
-                    f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
-                except:
-                    f_caption=f_caption
-            if f_caption is None:
-                f_caption = f"{file.file_name}"
-            await client.send_cached_media(
-                chat_id=message.from_user.id,
-                file_id=file.file_id,
-                caption=f_caption,
-                protect_content=True if pre == 'filep' else False,
-                reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url=f"https://t.me/Movies_Hub_Og") ] ] ),
-            )
-                    
-
-
+            f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+        except Exception as e:
+            logger.exception(e)
+            f_caption=f_caption
+    if f_caption is None:
+        f_caption = f"{files.file_name}"
+    await client.send_cached_media(
+        chat_id=message.from_user.id,
+        file_id=file_id,
+        caption=f_caption,
+        protect_content=True if pre == 'filep' else False,
+        reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url="https://t.me/Movies_Hub_Og") ] ] ),
+    )
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
     if isinstance(CHANNELS, (int, str)): channels = [CHANNELS]
