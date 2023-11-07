@@ -102,14 +102,14 @@ async def start(client, message):
                 await sts.edit("FAILED")
                 return await client.send_message(LOG_CHANNEL, "UNABLE TO OPEN FILE.")
             os.remove(file)
-            BATCH_FILES[file_id] = msgs
+             BATCH_FILES[file_id] = msgs
         for msg in msgs:
             title = msg.get("title")
             size=get_size(int(msg.get("size", 0)))
             f_caption=msg.get("caption", "")
             if BATCH_FILE_CAPTION:
                 try:
-                    f_caption=BATCH_FILE_CAPTION.format(mention=message.from_user.mention, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+                    f_caption=BATCH_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
                 except Exception as e:
                     logger.exception(e)
                     f_caption=f_caption
@@ -121,13 +121,19 @@ async def start(client, message):
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
-                    reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url="https://t.me/Movies_Hub_Og") ] ] ),
-                    )
+                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url="https://t.me/Movies_Hub_Og") ] ] ),
+                    
+                )
             except FloodWait as e:
-                await asyncio.sleep(e.value)
-                await client.send_cached_media(chat_id=message.from_user.id, file_id=msg.get("file_id"), caption=f_caption, protect_content=msg.get('protect', False)
-  reply_markup=InlineKeyboardMarkup( [ [InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url="https://t.me/Movies_Hub_Og")] ] ),
-            )
+                await asyncio.sleep(e.x)
+                logger.warning(f"Floodwait of {e.x} sec.")
+                await client.send_cached_media(
+                    chat_id=message.from_user.id,
+                    file_id=msg.get("file_id"),
+                    caption=f_caption,
+                    protect_content=msg.get('protect', False),
+                    reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🤍MOVIES HUB_OG🤍', url="https://t.me/Movies_Hub_Og") ] ] ),
+                )
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
