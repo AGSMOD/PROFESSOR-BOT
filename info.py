@@ -17,7 +17,7 @@ BOT_TOKEN = environ['BOT_TOKEN']
 
 # Bot settings
 WEBHOOK = bool(environ.get("WEBHOOK", True)) # for web support on/off
-PICS = (environ.get('PICS' ,'https://graph.org/file/01ddfcb1e8203879a63d7.jpg https://graph.org/file/d69995d9846fd4ad632b8.jpg https://graph.org/file/a125497b6b85a1d774394.jpg https://graph.org/file/43d26c54d37f4afb830f7.jpg https://graph.org/file/60c1adffc7cc2015f771c.jpg https://graph.org/file/d7b520240b00b7f083a24.jpg https://graph.org/file/0f336b0402db3f2a20037.jpg https://graph.org/file/39cc4e15cad4519d8e932.jpg https://graph.org/file/d59a1108b1ed1c6c6c144.jpg https://te.legra.ph/file/3a4a79f8d5955e64cbb8e.jpg https://graph.org/file/d69995d9846fd4ad632b8.jpg')).split()
+PICS = (environ.get('PICS' ,'https://telegra.ph/file/f37b7fcdda0c9c35b66ae.jpg https://telegra.ph/file/5989ad89957400bea25b0.jpg https://telegra.ph/file/84dba143e222a6b7fda14.jpg https://telegra.ph/file/ca56fbfb07e8fab2b83ff.jpg https://telegra.ph/file/3967481abc340934141a7.jpg https://telegra.ph/file/fbade32fb9e22574e4cb4.jpg https://telegra.ph/file/23b24491f7f17e2e8d46f.jpg https://telegra.ph/file/be698b5a325ea018f9a68.jpg https://telegra.ph/file/4316d0cf481591bfb065c.jpg https://telegra.ph/file/0145cab3b8a434f4e2a4f.jpg https://telegra.ph/file/419f93fab56b1408f4118.jpg https://telegra.ph/file/78e906a58256ffa0c9934.jpg https://telegra.ph/file/849cdaba1e2d04fff15a5.jpg https://telegra.ph/file/7e1ef6e551bc618522ec7.jpg  https://telegra.ph/file/20ba9da0f1091f8438fde.jpg https://telegra.ph/file/2ab474ec873e135d918ec.jpg https://telegra.ph/file/810e02da4d5d527232825.jpg')).split()
 UPTIME = time.time()
 
 # Admins, Channels & Users
@@ -73,8 +73,7 @@ FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '')).
 MELCOW_NEW_USERS = is_enabled(environ.get('MELCOW_NEW_USERS', "True"), True)
 PROTECT_CONTENT = is_enabled(environ.get('PROTECT_CONTENT', "False"), False)
 PUBLIC_FILE_STORE = is_enabled(environ.get('PUBLIC_FILE_STORE', "True"), True)
-LOG_MSG = "<b>Bᴏᴛ Rᴇsᴛᴀʀᴛᴇᴅ !📅 Dᴀᴛᴇ : <code>{}</code>⏰ Tɪᴍᴇ : <code>{}</code>🌐 Tɪᴍᴇᴢᴏɴᴇ : <code>Asia/Kolkata</code>🛠️ Bᴜɪʟᴅ Sᴛᴀᴛᴜs: <code>v2.7.1 [ Sᴛᴀʙʟᴇ ]</code></b>"
-
+LOG_MSG = "{} Iꜱ Rᴇsᴛᴀʀᴛᴇᴅ....✨\n\n🗓️ Dᴀᴛᴇ : {}\n⏰ Tɪᴍᴇ : 🉐 Vᴇʀsɪᴏɴ: {}\n🧾 Lɪᴄᴇɴꜱᴇ: {}\n©️ Cᴏᴩʏʀɪɢʜᴛ: {}"
 
 
 
