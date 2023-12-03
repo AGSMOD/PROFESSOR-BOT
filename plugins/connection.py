@@ -69,14 +69,17 @@ async def start(client, message):
         
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-            InlineKeyboardButton("⸙ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘAᴅᴅ ⸙", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
-            ],[
-            InlineKeyboardButton("☣ ʙᴏᴛ ᴏᴡɴᴇʀ", callback_data="owner_info"), 
-            InlineKeyboardButton("☯ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ", url="https://t.me/Movies_Hub_Og")
-            ],[      
-            InlineKeyboardButton("✯ ʜᴇʟᴘ", callback_data="help"),
-            InlineKeyboardButton("✇ ᴀʙᴏᴜᴛ", callback_data="about")
-        ]]
+                    InlineKeyboardButton('⸙ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⸙', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                ],[
+                    InlineKeyboardButton('☣ ʙᴏᴛ ᴏᴡɴᴇʀ', callback_data="owner_info"),
+                    InlineKeyboardButton('☯ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url=GRP_LNK)
+                ],[
+                    InlineKeyboardButton('✯ ʜᴇʟᴘ', callback_data='help'),
+                    InlineKeyboardButton('✇ ᴀʙᴏᴜᴛ', callback_data='about'),
+                    InlineKeyboardButton('Iɴʟɪɴᴇ Sᴇᴀʀᴄʜ ☌', switch_inline_query_current_chat='')
+                ],[
+                    InlineKeyboardButton('☄ ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ☄', url=CHNL_LNK)
+                  ]]
         m = await message.reply_sticker("CAACAgUAAxkBAAEBvlVk7YKnYxIHVnKW2PUwoibIR2ygGAACBAADwSQxMYnlHW4Ls8gQHgQ")
         await asyncio.sleep(2)
         await message.reply_photo(photo=random.choice(PICS), caption=START_MESSAGE.format(user=message.from_user.mention, bot=client.mention), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
